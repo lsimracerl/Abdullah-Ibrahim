@@ -1,0 +1,185 @@
+class Traveler:
+    def _init_(self, fullname, loyalty_id, preference):
+        self._fullname = fullname
+        self._loyalty_id = loyalty_id
+        self._preference = preference
+
+    @property
+    def fullname(self):
+        return self._fullname
+
+    @fullname.setter
+    def fullname(self, value):
+        self._fullname = value
+
+    @property
+    def loyalty_id(self):
+        return self._loyalty_id
+
+    @loyalty_id.setter
+    def loyalty_id(self, value):
+        self._loyalty_id = value
+
+    @property
+    def preference(self):
+        return self._preference
+
+    @preference.setter
+    def preference(self, value):
+        self._preference = value
+
+class Journey:
+    def _init_(self, flight_code, leave_time, reach_time, from_loc, to_loc):
+        self._flight_code = flight_code
+        self._leave_time = leave_time
+        self._reach_time = reach_time
+        self._from_loc = from_loc
+        self._to_loc = to_loc
+
+    @property
+    def flight_code(self):
+        return self._flight_code
+
+    @flight_code.setter
+    def flight_code(self, value):
+        self._flight_code = value
+
+    @property
+    def leave_time(self):
+        return self._leave_time
+
+    @leave_time.setter
+    def leave_time(self, value):
+        self._leave_time = value
+
+    @property
+    def reach_time(self):
+        return self._reach_time
+
+    @reach_time.setter
+    def reach_time(self, value):
+        self._reach_time = value
+
+    @property
+    def from_loc(self):
+        return self._from_loc
+
+    @from_loc.setter
+    def from_loc(self, value):
+        self._from_loc = value
+
+    @property
+    def to_loc(self):
+        return self._to_loc
+
+    @to_loc.setter
+    def to_loc(self, value):
+        self._to_loc = value
+
+class BoardingCard:
+    def _init_(self, position, gate_close_time, journey, traveler, airline):  # Added 'airline' here
+        self._position = position
+        self._gate_close_time = gate_close_time
+        self._journey = journey
+        self._traveler = traveler
+        self._airline = airline
+
+    def show_info(self):
+        print(f"{self._airline.airline_name}")  # Use the airline name from the airline object
+        print("FIRST CLASS")
+        print(f"Passenger: {self._traveler.fullname}")
+        print(f"From: {self._journey.from_loc} To: {self._journey.to_loc}")
+        print(f"Flight: {self._journey.flight_code}")
+        print(f"Date: {self._journey.leave_time.split()[0]} Time: {self._journey.leave_time.split()[1]}")
+        print(f"Gate: 03 Boarding till: {self._gate_close_time} Seat: {self._position}")
+        print(f"{self._traveler.loyalty_id}")
+
+
+    @property
+    def position(self):
+        return self._position
+
+    @position.setter
+    def position(self, value):
+        self._position = value
+
+    @property
+    def gate_close_time(self):
+        return self._gate_close_time
+
+    @gate_close_time.setter
+    def gate_close_time(self, value):
+        self._gate_close_time = value
+
+    @property
+    def journey(self):
+        return self._journey
+
+    @journey.setter
+    def journey(self, value):
+        self._journey = value
+
+    @property
+    def traveler(self):
+        return self._traveler
+
+    @traveler.setter
+    def traveler(self, value):
+        self._traveler = value
+class Airline:
+    def _init_(self, airline_name, airline_code):
+        self._airline_name = airline_name
+        self._airline_code = airline_code
+
+    @property
+    def airline_name(self):
+        return self._airline_name
+
+    @airline_name.setter
+    def airline_name(self, value):
+        self._airline_name = value
+
+    @property
+    def airline_code(self):
+        return self._airline_code
+
+    @airline_code.setter
+    def airline_code(self, value):
+        self._airline_code = value
+
+
+# Modify some attributes using setters, including airline
+# Instantiate the classes with initial data
+airline = Airline("Global Air", "GA123")
+traveler = Traveler("James Smith", "789XYZ45", "Window")
+journey = Journey("FL1234", "2024-03-15 09:00", "2024-03-15 12:00", "Los Angeles LAX", "New York JFK")
+boarding_card = BoardingCard("12C", "08:40", journey, traveler, airline)  # Corrected number of arguments
+
+
+# Display updated boarding card information
+print("Updated Boarding Card Information:")
+boarding_card.show_info()
+# Create airline instance and modify its attributes
+airline = Airline("Global Air", "GA123")
+airline.airline_name = "Skyward Airlines"  # Using setter
+airline.airline_code = "SK777"              # Using setter
+
+# Instantiate other classes with initial data
+traveler = Traveler("james smith", "789XYZ45", "Window")
+traveler.fullname = "james smith"              # Using setter
+traveler.loyalty_id = "123ABC90"            # Using setter
+
+journey = Journey("FL1234", "2024-03-15 09:00", "2024-03-15 12:00", "Los Angeles LAX", "New York JFK")
+journey.from_loc = "San Francisco SFO"      # Using setter
+journey.to_loc = "Boston BOS"               # Using setter
+journey.flight_code = "FL5678"              # Using setter
+journey.leave_time = "2024-03-15 10:00"     # Using setter
+
+boarding_card = BoardingCard("12C", "08:40", journey, traveler, airline)
+boarding_card.position = "14A"              # Using setter
+boarding_card.gate_close_time = "09:40"     # Using setter
+boarding_card.airline = airline             # Using setter
+
+# Display updated boarding card information
+print("Updated Boarding Card Information:")
+boarding_card.show_info()
